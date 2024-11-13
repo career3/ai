@@ -1,0 +1,616 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+<html><head><title></title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+</head>
+<body>
+<div style="page-break-before:always; page-break-after:always"><div><p><b>AI EXTERNAL LAB <br/></b></p>
+<p><b>1. TIC-TAC-TOE <br/> <br/>Program: <br/></b></p>
+<p><b> <br/></b>import random <br/></p>
+<p>def printBoard(board): <br/></p>
+<p>    for row in board: <br/></p>
+<p>        print(&quot;|&quot;.join(row)) <br/></p>
+<p>        print(&quot;-&quot; * 5) <br/></p>
+<p>def checkWin(board, player): <br/></p>
+<p>    for row in board: <br/></p>
+<p>        if all([cell == player for cell in row]): <br/></p>
+<p>            return True <br/></p>
+<p>    for col in range(3): <br/></p>
+<p>        if all([board[row][col] == player for row in range(3)]): <br/></p>
+<p>            return True <br/></p>
+<p>    if all([board[i][i] == player for i in range(3)]) or all([board[i][2 - i] == player for i in range(3)]): <br/></p>
+<p>        return True <br/></p>
+<p>    return False <br/></p>
+<p>def checkDraw(board): <br/></p>
+<p>    return all([cell != ' ' for row in board for cell in row]) <br/></p>
+<p>def getAvailableMoves(board): <br/></p>
+<p>    moves = [] <br/></p>
+<p>    for i in range(3): <br/></p>
+<p>        for j in range(3): <br/></p>
+<p>            if board[i][j] == ' ': <br/></p>
+<p>                moves.append((i, j)) <br/></p>
+<p>    return moves <br/></p>
+<p>def computerMove(board): </p>
+
+</div></div>
+<div style="page-break-before:always; page-break-after:always"><div><p>    available_moves = getAvailableMoves(board) <br/></p>
+<p>    return random.choice(available_moves) <br/></p>
+<p>def ticTacToe(): <br/></p>
+<p>    board = [[' ' for _ in range(3)] for _ in range(3)] <br/></p>
+<p>    human = 'X' <br/></p>
+<p>    computer = 'O' <br/></p>
+<p>    print(&quot;Welcome to Tic-Tac-Toe! You're 'X', the computer is 'O'.&quot;) <br/></p>
+<p>    while True: <br/></p>
+<p>        printBoard(board) <br/></p>
+<p>        while True: <br/></p>
+<p>            try: <br/></p>
+<p>                row = int(input(&quot;Enter your move (row 0-2): &quot;)) <br/></p>
+<p>                col = int(input(&quot;Enter your move (column 0-2): &quot;)) <br/></p>
+<p>                if board[row][col] == ' ': <br/></p>
+<p>                    board[row][col] = human <br/></p>
+<p>                    break <br/></p>
+<p>                else: <br/></p>
+<p>                    print(&quot;Invalid move, try again.&quot;) <br/></p>
+<p>            except: <br/></p>
+<p>                print(&quot;Invalid input, please enter row and column between 0 and 2.&quot;) <br/></p>
+<p>        if checkWin(board, human): <br/></p>
+<p>            printBoard(board) <br/></p>
+<p>            print(&quot;Congratulations, you win!&quot;) <br/></p>
+<p>            break <br/></p>
+<p>        if checkDraw(board): <br/></p>
+<p>            printBoard(board) <br/></p>
+<p>            print(&quot;It's a draw!&quot;) <br/></p>
+<p>            break <br/></p>
+<p>        row, col = computerMove(board) </p>
+
+</div></div>
+<div style="page-break-before:always; page-break-after:always"><div><p>        board[row][col] = computer <br/></p>
+<p>        print(f&quot;Computer moves to ({row}, {col})&quot;) <br/></p>
+<p>        if checkWin(board, computer): <br/></p>
+<p>            printBoard(board) <br/></p>
+<p>            print(&quot;Computer wins! Better luck next time.&quot;) <br/></p>
+<p>            break <br/></p>
+<p>        if checkDraw(board): <br/></p>
+<p>            printBoard(board) <br/></p>
+<p>            print(&quot;It's a draw!&quot;) <br/></p>
+<p>            break <br/></p>
+<p>ticTacToe() <br/></p>
+<p><b>OUTPUT</b> <br/>Welcome to Tic-Tac-Toe! You're 'X', the computer is 'O'.<b> <br/></b></p>
+<p> | | <br/></p>
+<p>----- <br/></p>
+<p> | | <br/></p>
+<p>----- <br/></p>
+<p> | | <br/></p>
+<p>----- <br/></p>
+<p>Enter your move (row 0-2): 1 <br/></p>
+<p>Enter your move (column 0-2): 1 <br/></p>
+<p>Computer moves to (2, 1) <br/></p>
+<p> | | <br/></p>
+<p>----- <br/></p>
+<p> |X| <br/></p>
+<p>----- <br/></p>
+<p> |O| <br/></p>
+<p>----- <br/></p>
+<p>Enter your move (row 0-2): 2 </p>
+
+</div></div>
+<div style="page-break-before:always; page-break-after:always"><div><p>Enter your move (column 0-2): 0 <br/></p>
+<p>Computer moves to (1, 2) <br/></p>
+<p> | | <br/></p>
+<p>----- <br/></p>
+<p> |X|O <br/></p>
+<p>----- <br/></p>
+<p>X|O| <br/></p>
+<p>----- <br/></p>
+<p>Enter your move (row 0-2): 0 <br/></p>
+<p>Enter your move (column 0-2): 2 <br/></p>
+<p> | |X <br/></p>
+<p>----- <br/></p>
+<p> |X|O <br/></p>
+<p>----- <br/></p>
+<p>X|O| <br/></p>
+<p>----- <br/></p>
+<p>Congratulations, you win! <br/></p>
+<p><b>2.WATER-JUG PROBLEM <br/></b></p>
+<p><b>Program: <br/></b>x=5<b> <br/></b></p>
+<p>y=3 <br/></p>
+<p>x1=int(input(&quot;Enter the initial amount of water in 5 liter jug : &quot;)) <br/></p>
+<p>y1=int(input(&quot;Enter the initial amount of water in 3 liter jug : &quot;)) <br/></p>
+<p>s=4 <br/></p>
+<p>while True: <br/></p>
+<p>    rule=int(input(&quot;Enter the rule no : &quot;)) <br/></p>
+<p>    if(rule==1): <br/></p>
+<p>        if x1&lt;x:x1=x <br/></p>
+<p>    if rule==2: </p>
+
+</div></div>
+<div style="page-break-before:always; page-break-after:always"><div><p>        if x1&gt;0:x1=0 <br/></p>
+<p>    if rule==3: <br/></p>
+<p>        if y1&lt;y:y1=y <br/></p>
+<p>    if rule==4: <br/></p>
+<p>        if y1&gt;0:y1=0 <br/></p>
+<p>    if rule==5: <br/></p>
+<p>        if x1+y1&lt;=3 and y1&gt;0:x1,y1=x1+y1,0 <br/></p>
+<p>    if rule==6: <br/></p>
+<p>        if x1+y1&lt;=5 and x1&gt;0:x1,y1=0,x1+y1 <br/></p>
+<p>    if rule==7: <br/></p>
+<p>        if x1+y1&gt;=3:x1,y1=5,x1+y1-5 <br/></p>
+<p>    if rule==8: <br/></p>
+<p>        if x1+y1&gt;=5:x1,y1=x1+y1-3,3 <br/></p>
+<p>    print(f&quot;X is : {x1}\n Y is : {y1}&quot;) <br/></p>
+<p>    if x1==s: <br/></p>
+<p>        print(&quot;The goal state is reached&quot;) <br/></p>
+<p>        break <br/></p>
+<p><b>OUTPUT</b> <br/>Enter the initial amount of water in 5 liter jug : 0 <br/></p>
+<p>Enter the initial amount of water in 3 liter jug : 0 <br/></p>
+<p>Enter the rule no : 1 <br/></p>
+<p>X is : 5 <br/></p>
+<p> Y is : 0 <br/></p>
+<p>Enter the rule no : 8 <br/></p>
+<p>X is : 2 <br/></p>
+<p> Y is : 3 <br/></p>
+<p>Enter the rule no : 4 <br/></p>
+<p>X is : 2 <br/></p>
+<p> Y is : 0 </p>
+
+</div></div>
+<div style="page-break-before:always; page-break-after:always"><div><p>Enter the rule no : 6 <br/></p>
+<p>X is : 0 <br/></p>
+<p> Y is : 2 <br/></p>
+<p>Enter the rule no : 1 <br/></p>
+<p>X is : 5 <br/></p>
+<p> Y is : 2 <br/></p>
+<p>Enter the rule no : 8 <br/></p>
+<p>X is : 4 <br/></p>
+<p> Y is : 3 <br/></p>
+<p>The goal state is reached <br/></p>
+<p><b>3.BFS <br/>Program <br/></b>dict1={} <br/></p>
+<p>res=[] <br/></p>
+<p>queue=[] <br/></p>
+<p>visited=[0 for i in range(10)] <br/></p>
+<p>def addEdges(dict1,key,val): <br/></p>
+<p>    if key in dict1: <br/></p>
+<p>        dict1[key].append(val) <br/></p>
+<p>    else: <br/></p>
+<p>        dict1[key]=[val] <br/></p>
+<p>start=1 <br/></p>
+<p>visited[start]=1 <br/></p>
+<p>queue.append(start) <br/></p>
+<p>addEdges(dict1,1,2) <br/></p>
+<p>addEdges(dict1,2,1) <br/></p>
+<p>addEdges(dict1,1,3) <br/></p>
+<p>addEdges(dict1,3,1) <br/></p>
+<p>addEdges(dict1,2,9) </p>
+
+</div></div>
+<div style="page-break-before:always; page-break-after:always"><div><p>addEdges(dict1,9,2) <br/></p>
+<p>addEdges(dict1,3,4) <br/></p>
+<p>addEdges(dict1,4,3) <br/></p>
+<p>addEdges(dict1,3,5) <br/></p>
+<p>addEdges(dict1,5,3) <br/></p>
+<p>addEdges(dict1,4,6) <br/></p>
+<p>addEdges(dict1,6,4) <br/></p>
+<p>addEdges(dict1,4,8) <br/></p>
+<p>addEdges(dict1,8,4) <br/></p>
+<p>addEdges(dict1,5,7) <br/></p>
+<p>addEdges(dict1,7,5) <br/></p>
+<p>while(len(queue)!=0): <br/></p>
+<p>    node=queue.pop(0) <br/></p>
+<p>    res.append(node) <br/></p>
+<p>    if node in dict1: <br/></p>
+<p>        for neighbour in dict1[node]: <br/></p>
+<p>            if(visited[neighbour]==0): <br/></p>
+<p>                queue.append(neighbour) <br/></p>
+<p>                visited[neighbour]=1 <br/></p>
+<p>  <br/></p>
+<p>print(res) <br/></p>
+<p><b>OUTPUT</b> <br/> <br/>[1, 2, 3, 9, 4, 5, 6, 8, 7] <br/></p>
+<p><b>4.DFS</b> <br/><b>Program :</b> <br/>visited=[0 for i in range(10)] <br/></p>
+<p>dict1={} <br/></p>
+<p>res=[] <br/></p>
+<p>def addEdges(dict1,key,value): </p>
+
+</div></div>
+<div style="page-break-before:always; page-break-after:always"><div><p>    if key in dict1: <br/></p>
+<p>        dict1[key].append(value) <br/></p>
+<p>    else: <br/></p>
+<p>        dict1[key]=[value] <br/></p>
+<p>def dfs(node): <br/></p>
+<p>    res.append(node) <br/></p>
+<p>    visited[node]=1 <br/></p>
+<p>    if node in dict1: <br/></p>
+<p>        for neighbour in dict1[node]: <br/></p>
+<p>            if(visited[neighbour]==0): <br/></p>
+<p>                dfs(neighbour) <br/></p>
+<p>addEdges(dict1,1,2) <br/></p>
+<p>addEdges(dict1,2,1) <br/></p>
+<p>addEdges(dict1,1,3) <br/></p>
+<p>addEdges(dict1,3,1) <br/></p>
+<p>addEdges(dict1,2,9) <br/></p>
+<p>addEdges(dict1,9,2) <br/></p>
+<p>addEdges(dict1,3,4) <br/></p>
+<p>addEdges(dict1,4,3) <br/></p>
+<p>addEdges(dict1,3,5) <br/></p>
+<p>addEdges(dict1,5,3) <br/></p>
+<p>addEdges(dict1,4,6) <br/></p>
+<p>addEdges(dict1,6,4) <br/></p>
+<p>addEdges(dict1,4,8) <br/></p>
+<p>addEdges(dict1,8,4) <br/></p>
+<p>addEdges(dict1,5,7) <br/></p>
+<p>addEdges(dict1,7,5) <br/></p>
+<p>dfs(1) </p>
+
+</div></div>
+<div style="page-break-before:always; page-break-after:always"><div><p>print(res)<b> <br/>OUTPUT :</b> <br/>[1, 2, 9, 3, 4, 6, 8, 5, 7]<b> <br/>5.  8-PUZZLE-PROBLEM <br/>Program : <br/></b>def puzzle(): <br/></p>
+<p>    row = [] <br/></p>
+<p>    for i in range(3): <br/></p>
+<p>        col = [] <br/></p>
+<p>        for j in range(3): <br/></p>
+<p>            val = int(input(&quot;Enter the values for row {}, column {}: &quot;.format(i+1, j+1))) <br/></p>
+<p>            col.append(val) <br/></p>
+<p>        row.append(col) <br/></p>
+<p>    return row <br/></p>
+<p>def checkGoal(initial_state, final_state): <br/></p>
+<p>    return initial_state == final_state <br/></p>
+<p>def findBlank(initial_state): <br/></p>
+<p>    for i in range(3): <br/></p>
+<p>        for j in range(3): <br/></p>
+<p>            if initial_state[i][j] == 0: <br/></p>
+<p>                return i, j <br/></p>
+<p>def checkMoves(i, j): <br/></p>
+<p>    moves = [] <br/></p>
+<p>    # Up <br/></p>
+<p>    if i &gt; 0: <br/></p>
+<p>        moves.append((i - 1, j)) <br/></p>
+<p>    # Down <br/></p>
+<p>    if i &lt; 2:  # Since it's a 3x3 board, index 2 is the last row <br/></p>
+<p>        moves.append((i + 1, j)) <br/></p>
+<p>    # Left </p>
+
+</div></div>
+<div style="page-break-before:always; page-break-after:always"><div><p>    if j &gt; 0: <br/></p>
+<p>        moves.append((i, j - 1)) <br/></p>
+<p>    # Right <br/></p>
+<p>    if j &lt; 2:   <br/></p>
+<p>        moves.append((i, j + 1)) <br/></p>
+<p>    return moves <br/></p>
+<p>def makeMove(initial_state, blank_pos, move): <br/></p>
+<p>    new_state = [row[:] for row in initial_state]   <br/></p>
+<p>    i, j = blank_pos <br/></p>
+<p>    new_i, new_j = move <br/></p>
+<p>    new_state[i][j], new_state[new_i][new_j] = new_state[new_i][new_j], new_state[i][j] <br/></p>
+<p>    return new_state <br/></p>
+<p>from collections import deque <br/></p>
+<p>def solvePuzzle(initial_state, final_state): <br/></p>
+<p>    queue = deque([(initial_state, findBlank(initial_state), [])]) <br/></p>
+<p>    visited = set()   <br/></p>
+<p>    while queue: <br/></p>
+<p>        current_state, blank_pos, path = queue.popleft() <br/></p>
+<p>        if checkGoal(current_state, final_state): <br/></p>
+<p>            return path <br/></p>
+<p>        visited.add(tuple(tuple(row) for row in current_state)) <br/></p>
+<p>        for move in checkMoves(*blank_pos): <br/></p>
+<p>            new_state = makeMove(current_state, blank_pos, move) <br/></p>
+<p>            if tuple(tuple(row) for row in new_state) not in visited: <br/></p>
+<p>                queue.append((new_state, move, path + [move])) <br/></p>
+<p>     <br/></p>
+<p>    return None <br/></p>
+<p>final_state = [[1, 2, 3], [4, 0, 5], [6, 7, 8]] <br/></p>
+<p>initial_state = puzzle() </p>
+
+</div></div>
+<div style="page-break-before:always; page-break-after:always"><div><p>solution = solvePuzzle(initial_state, final_state) <br/></p>
+<p>if solution: <br/></p>
+<p>    print(&quot;Solution found:&quot;, solution) <br/></p>
+<p>else: <br/></p>
+<p>    print(&quot;No solution found.&quot;) <br/><b>OUTPUT :</b> <br/>Enter the values for row 1, column 1: 1<b> <br/></b></p>
+<p>Enter the values for row 1, column 2: 2 <br/></p>
+<p>Enter the values for row 1, column 3: 3 <br/></p>
+<p>Enter the values for row 2, column 1: 4 <br/></p>
+<p>Enter the values for row 2, column 2: 5 <br/></p>
+<p>Enter the values for row 2, column 3: 6 <br/></p>
+<p>Enter the values for row 3, column 1: 7 <br/></p>
+<p>Enter the values for row 3, column 2: 8 <br/></p>
+<p>Enter the values for row 3, column 3: 0 <br/></p>
+<p>Solution found: [(2, 1), (2, 0), (1, 0), (1, 1), (1, 2), (2, 2), (2, 1), (1, 1), (1, 0), (2, 0), (2, 1), (2, 2), (1, 2), (1, <br/>1)]<b> <br/>6.TOWERS OF HANOI <br/>Program  : <br/></b>n=3<b> <br/></b></p>
+<p>def hanoi(n,from1,to,aux): <br/></p>
+<p>    if n==0: <br/></p>
+<p>        return -1 <br/></p>
+<p>    hanoi(n-1,from1,aux,to) <br/></p>
+<p>    print(&quot;Move to disk&quot;,n,&quot;from rod&quot;,from1,&quot;to rod&quot;,to,&quot;using Auxiliary rod&quot;,aux) <br/></p>
+<p>    hanoi(n-1,aux,to,from1) <br/></p>
+<p>hanoi(n,'A','B','C')<b> <br/> <br/>OUTPUT :</b> <br/>Move to disk 1 from rod A to rod B using Auxiliary rod C <br/></p>
+<p>Move to disk 2 from rod A to rod C using Auxiliary rod B <br/></p>
+<p>Move to disk 1 from rod B to rod C using Auxiliary rod A </p>
+
+</div></div>
+<div style="page-break-before:always; page-break-after:always"><div><p>Move to disk 3 from rod A to rod B using Auxiliary rod C <br/></p>
+<p>Move to disk 1 from rod C to rod A using Auxiliary rod B <br/></p>
+<p>Move to disk 2 from rod C to rod B using Auxiliary rod A <br/></p>
+<p>Move to disk 1 from rod A to rod B using Auxiliary rod C <br/></p>
+<p><b>7. MISSIONARIES AND CANNIBALS <br/>Program  : <br/></b>nlm = 3  # Number of missionaries on the left side <br/></p>
+<p>nlc = 3  # Number of cannibals on the left side <br/></p>
+<p>nrm = 0  # Number of missionaries on the right side <br/></p>
+<p>nrc = 0  # Number of cannibals on the right side <br/></p>
+<p>direction = &quot;left&quot; <br/></p>
+<p>print(&quot;Left to Right : &quot;) <br/></p>
+<p>print(nlm, &quot;M&quot;, &quot;|&quot;, nlc, &quot;C&quot;, &quot;----&gt;&quot;, nrm, &quot;M&quot;, &quot;|&quot;, nrc, &quot;C&quot;) <br/></p>
+<p>k=0 <br/></p>
+<p>def checkSafe(lm, rm, lc, rc): <br/></p>
+<p>    # Check if the number of missionaries or cannibals is negative <br/></p>
+<p>    if lm &lt; 0 or lc &lt; 0 or rm &lt; 0 or rc &lt; 0: <br/></p>
+<p>        return False <br/></p>
+<p>    # Check if cannibals outnumber missionaries on either side <br/></p>
+<p>    if (lm &gt; 0 and lc &gt; lm) or (rm &gt; 0 and rc &gt; rm): <br/></p>
+<p>        return False <br/></p>
+<p>    return True <br/></p>
+<p>while True: <br/></p>
+<p>    # Left side to right side <br/></p>
+<p>    if direction == &quot;left&quot;: <br/></p>
+<p>        um = int(input(&quot;Enter no of missionaries to travel from left to right: &quot;)) <br/></p>
+<p>        uc = int(input(&quot;Enter no of cannibals to travel from left to right: &quot;)) <br/></p>
+<p>        if um + uc &gt; 2 or um + uc == 0 or um &lt; 0 or uc &lt; 0: <br/></p>
+<p>            print(&quot;Invalid input&quot;) </p>
+
+</div></div>
+<div style="page-break-before:always; page-break-after:always"><div><p>            continue <br/></p>
+<p>        # Update the numbers after the move <br/></p>
+<p>        new_nlm = nlm - um <br/></p>
+<p>        new_nlc = nlc - uc <br/></p>
+<p>        new_nrm = nrm + um <br/></p>
+<p>        new_nrc = nrc + uc <br/></p>
+<p>        if not checkSafe(new_nlm, new_nrm, new_nlc, new_nrc): <br/></p>
+<p>            print(&quot;Move is not safe, try again.&quot;) <br/></p>
+<p>            continue <br/></p>
+<p>        # Apply the changes if the move is safe <br/></p>
+<p>        nlm, nlc, nrm, nrc = new_nlm, new_nlc, new_nrm, new_nrc <br/></p>
+<p>        k+=1 <br/></p>
+<p>        print(&quot;Left Side to Right Side:&quot;) <br/></p>
+<p>        print(nlm, &quot;M&quot;, &quot;|&quot;, nlc, &quot;C&quot;, &quot;----&gt;&quot;, nrm, &quot;M&quot;, &quot;|&quot;, nrc, &quot;C&quot;) <br/></p>
+<p>        direction = &quot;right&quot; <br/></p>
+<p>    # Right side to left side <br/></p>
+<p>    else: <br/></p>
+<p>        um = int(input(&quot;Enter no of missionaries to travel from right to left: &quot;)) <br/></p>
+<p>        uc = int(input(&quot;Enter no of cannibals to travel from right to left: &quot;)) <br/></p>
+<p>        if um + uc &gt; 2 or um + uc == 0 or um &lt; 0 or uc &lt; 0: <br/></p>
+<p>            print(&quot;Invalid input&quot;) <br/></p>
+<p>            continue <br/></p>
+<p>        # Update the numbers after the move <br/></p>
+<p>        new_nlm = nlm + um <br/></p>
+<p>        new_nlc = nlc + uc <br/></p>
+<p>        new_nrm = nrm - um <br/></p>
+<p>        new_nrc = nrc - uc <br/></p>
+<p>        if not checkSafe(new_nlm, new_nrm, new_nlc, new_nrc): <br/></p>
+<p>            print(&quot;Move is not safe, try again.&quot;) </p>
+
+</div></div>
+<div style="page-break-before:always; page-break-after:always"><div><p>            continue <br/></p>
+<p>        # Apply the changes if the move is safe <br/></p>
+<p>        nlm, nlc, nrm, nrc = new_nlm, new_nlc, new_nrm, new_nrc <br/></p>
+<p>        k+=1 <br/></p>
+<p>        print(&quot;Right Side to Left Side:&quot;) <br/></p>
+<p>        print(nlm, &quot;M&quot;, &quot;|&quot;, nlc, &quot;C&quot;, &quot;----&gt;&quot;, nrm, &quot;M&quot;, &quot;|&quot;, nrc, &quot;C&quot;) <br/></p>
+<p>        direction = &quot;left&quot; <br/></p>
+<p>  <br/></p>
+<p>    # Check if goal state is reached <br/></p>
+<p>    if nrm == 3 and nrc == 3: <br/></p>
+<p>        print(&quot;Goal State is reached&quot;) <br/></p>
+<p>        print(nlm, &quot;M&quot;, &quot;|&quot;, nlc, &quot;C&quot;, &quot;----&gt;&quot;, nrm, &quot;M&quot;, &quot;|&quot;, nrc, &quot;C&quot;) <br/></p>
+<p>        print(&quot;No of Steps : &quot;,k) <br/></p>
+<p>        break <br/><b>OUTPUT :</b> <br/>Left to Right : <br/></p>
+<p>3 M | 3 C ----&gt; 0 M | 0 C <br/></p>
+<p>Enter no of missionaries to travel from left to right: 1 <br/></p>
+<p>Enter no of cannibals to travel from left to right: 1 <br/></p>
+<p>Left Side to Right Side: <br/></p>
+<p>2 M | 2 C ----&gt; 1 M | 1 C <br/></p>
+<p>Enter no of missionaries to travel from right to left: 1 <br/></p>
+<p>Enter no of cannibals to travel from right to left: 0 <br/></p>
+<p>Right Side to Left Side: <br/></p>
+<p>3 M | 2 C ----&gt; 0 M | 1 C <br/></p>
+<p>Enter no of missionaries to travel from left to right: 0 <br/></p>
+<p>Enter no of cannibals to travel from left to right: 2 <br/></p>
+<p>Left Side to Right Side: <br/></p>
+<p>3 M | 0 C ----&gt; 0 M | 3 C </p>
+
+</div></div>
+<div style="page-break-before:always; page-break-after:always"><div><p>Enter no of missionaries to travel from right to left: 0 <br/></p>
+<p>Enter no of cannibals to travel from right to left: 1 <br/></p>
+<p>Right Side to Left Side: <br/></p>
+<p>3 M | 1 C ----&gt; 0 M | 2 C <br/></p>
+<p>Enter no of missionaries to travel from left to right: 2 <br/></p>
+<p>Enter no of cannibals to travel from left to right: 0 <br/></p>
+<p>Left Side to Right Side: <br/></p>
+<p>1 M | 1 C ----&gt; 2 M | 2 C <br/></p>
+<p>Enter no of missionaries to travel from right to left: 1 <br/></p>
+<p>Enter no of cannibals to travel from right to left: 1 <br/></p>
+<p>Right Side to Left Side: <br/></p>
+<p>2 M | 2 C ----&gt; 1 M | 1 C <br/></p>
+<p>Enter no of missionaries to travel from left to right: 2 <br/></p>
+<p>Enter no of cannibals to travel from left to right: 0 <br/></p>
+<p>Left Side to Right Side: <br/></p>
+<p>0 M | 2 C ----&gt; 3 M | 1 C <br/></p>
+<p>Enter no of missionaries to travel from right to left: 0 <br/></p>
+<p>Enter no of cannibals to travel from right to left: 1 <br/></p>
+<p>Right Side to Left Side: <br/></p>
+<p>0 M | 3 C ----&gt; 3 M | 0 C <br/></p>
+<p>Enter no of missionaries to travel from left to right: 0 <br/></p>
+<p>Enter no of cannibals to travel from left to right: 2 <br/></p>
+<p>Left Side to Right Side: <br/></p>
+<p>0 M | 1 C ----&gt; 3 M | 2 C <br/></p>
+<p>Enter no of missionaries to travel from right to left: 0 <br/></p>
+<p>Enter no of cannibals to travel from right to left: 1 <br/></p>
+<p>Right Side to Left Side: <br/></p>
+<p>0 M | 2 C ----&gt; 3 M | 1 C <br/></p>
+<p>Enter no of missionaries to travel from left to right: 0 </p>
+
+</div></div>
+<div style="page-break-before:always; page-break-after:always"><div><p>Enter no of cannibals to travel from left to right: 2 <br/></p>
+<p>Left Side to Right Side: <br/></p>
+<p>0 M | 0 C ----&gt; 3 M | 3 C <br/></p>
+<p>Goal State is reached <br/></p>
+<p>0 M | 0 C ----&gt; 3 M | 3 C <br/></p>
+<p>No of Steps :  11<b> <br/> <br/> <br/> <br/>8.TRAVELLING SALESMAN PROBLEM <br/> <br/>Program :</b> <br/>from itertools import permutations <br/></p>
+<p>def calculateDistance(graph, route): <br/></p>
+<p>    total_distance = 0 <br/></p>
+<p>    num_cities = len(route) <br/></p>
+<p>    for i in range(num_cities - 1): <br/></p>
+<p>        total_distance += graph[route[i]][route[i + 1]] <br/></p>
+<p>    total_distance += graph[route[-1]][route[0]] <br/></p>
+<p>     <br/></p>
+<p>    return total_distance <br/></p>
+<p>def travelingSalesman(graph): <br/></p>
+<p>    num_cities = len(graph) <br/></p>
+<p>    cities = [i for i in range(num_cities)] <br/></p>
+<p>    all_routes = permutations(cities) <br/></p>
+<p>    min_cost = float('inf') <br/></p>
+<p>    best_route = None <br/></p>
+<p>    for route in all_routes: <br/></p>
+<p>        current_cost = calculateDistance(graph, route) <br/></p>
+<p>        if current_cost &lt; min_cost: <br/></p>
+<p>            min_cost = current_cost </p>
+
+</div></div>
+<div style="page-break-before:always; page-break-after:always"><div><p>            best_route = route <br/></p>
+<p>    return min_cost, best_route <br/></p>
+<p>graph = [ <br/></p>
+<p>    [0, 10, 15, 20], <br/></p>
+<p>    [10, 0, 35, 25], <br/></p>
+<p>    [15, 35, 0, 30], <br/></p>
+<p>    [20, 25, 30, 0] <br/></p>
+<p>] <br/></p>
+<p>min_cost, best_route = travelingSalesman(graph) <br/></p>
+<p>print(&quot;Minimum cost:&quot;, min_cost) <br/></p>
+<p>print(&quot;Best route:&quot;, best_route)<b> <br/>OUTPUT <br/></b>Minimum cost: 80<b> <br/></b></p>
+<p>Best route: (0, 1, 3, 2) #A-0,B-1,C-2,D-3 <br/></p>
+<p><b>9.Monkey and Banana <br/></b></p>
+<p><b>Program: <br/></b></p>
+<p>class MonkeyBanana: <br/></p>
+<p>    def _init_(self, monkey_pos, banana_pos, shelf_height): <br/></p>
+<p>        self.monkey_pos = monkey_pos <br/></p>
+<p>        self.banana_pos = banana_pos <br/></p>
+<p>        self.shelf_height = shelf_height <br/></p>
+<p>        self.monkey_height = 0  # Monkey starts at ground level (height 0) <br/></p>
+<p>    def move(self):   <br/></p>
+<p>        if self.monkey_pos &lt; self.banana_pos: <br/></p>
+<p>            self.monkey_pos += 1 <br/></p>
+<p>        elif self.monkey_pos &gt; self.banana_pos: <br/></p>
+<p>            self.monkey_pos -= 1 <br/></p>
+<p>        print(f&quot;Monkey moved to position: {self.monkey_pos}&quot;) <br/></p>
+<p>    def climb(self): </p>
+
+</div></div>
+<div style="page-break-before:always; page-break-after:always"><div><p>        if self.monkey_pos == self.banana_pos and self.monkey_height &lt; self.shelf_height: <br/></p>
+<p>            self.monkey_height += 1 <br/></p>
+<p>            print(f&quot;Monkey climbed to height: {self.monkey_height}&quot;) <br/></p>
+<p>        else: <br/></p>
+<p>            print(&quot;Monkey cannot climb here!&quot;) <br/></p>
+<p>    def getBanana(self): <br/></p>
+<p>        if self.monkey_pos == self.banana_pos and self.monkey_height == self.shelf_height: <br/></p>
+<p>            print(&quot;Monkey got the banana!&quot;) <br/></p>
+<p>def main(): <br/></p>
+<p>    monkey_pos = int(input(&quot;Enter starting position of monkey: &quot;)) <br/></p>
+<p>    banana_pos = int(input(&quot;Enter starting banana position: &quot;)) <br/></p>
+<p>    shelf_height = int(input(&quot;Enter the shelf height: &quot;)) <br/></p>
+<p>    monkey_banana = MonkeyBanana(monkey_pos, banana_pos, shelf_height) <br/></p>
+<p>    while monkey_banana.monkey_pos != monkey_banana.banana_pos or <br/>monkey_banana.monkey_height != monkey_banana.shelf_height: <br/></p>
+<p>        action = input(&quot;What action should be performed (move/climb): &quot;).lower() <br/></p>
+<p>        if action == &quot;move&quot;: <br/></p>
+<p>            monkey_banana.move() <br/></p>
+<p>        elif action == &quot;climb&quot;: <br/></p>
+<p>            monkey_banana.climb() <br/></p>
+<p>        if monkey_banana.monkey_pos == monkey_banana.banana_pos and <br/>monkey_banana.monkey_height == monkey_banana.shelf_height: <br/></p>
+<p>            monkey_banana.getBanana() <br/></p>
+<p>            break <br/></p>
+<p>main() <br/></p>
+<p><b>OUTPUT: <br/></b></p>
+<p>Enter starting position of monkey: 0 <br/></p>
+<p>Enter starting banana position: 5 <br/></p>
+<p>Enter the shelf height: 5 </p>
+
+</div></div>
+<div style="page-break-before:always; page-break-after:always"><div><p>What action should be performed (move/climb): move <br/></p>
+<p>Monkey moved to position: 1 <br/></p>
+<p>What action should be performed (move/climb): climb <br/></p>
+<p>Monkey cannot climb here! <br/></p>
+<p>What action should be performed (move/climb): move <br/></p>
+<p>Monkey moved to position: 2 <br/></p>
+<p>What action should be performed (move/climb): move <br/></p>
+<p>Monkey moved to position: 3 <br/></p>
+<p>What action should be performed (move/climb): move <br/></p>
+<p>Monkey moved to position: 4 <br/></p>
+<p>What action should be performed (move/climb): move <br/></p>
+<p>Monkey moved to position: 5 <br/></p>
+<p>What action should be performed (move/climb): climb <br/></p>
+<p>Monkey climbed to height: 1 <br/></p>
+<p>What action should be performed (move/climb): climb <br/></p>
+<p>Monkey climbed to height: 2 <br/></p>
+<p>What action should be performed (move/climb): climb <br/></p>
+<p>Monkey climbed to height: 3 <br/></p>
+<p>What action should be performed (move/climb): climb <br/></p>
+<p>Monkey climbed to height: 4 <br/></p>
+<p>What action should be performed (move/climb): climb <br/></p>
+<p>Monkey climbed to height: 5 <br/></p>
+<p>Monkey got the banana! <br/></p>
+<p><b>10.N-QUEENS <br/></b></p>
+<p><b>Program: <br/></b></p>
+<p>def print_board(board): <br/></p>
+<p>    &quot;&quot;&quot;Utility to print the board.&quot;&quot;&quot; <br/></p>
+<p>    for row in board: <br/></p>
+<p>        print(&quot; &quot;.join(&quot;Q&quot; if x else &quot;.&quot; for x in row)) </p>
+
+</div></div>
+<div style="page-break-before:always; page-break-after:always"><div><p>    print(&quot;\n&quot;) <br/></p>
+<p>def is_safe(board, row, col, n): <br/></p>
+<p>    &quot;&quot;&quot;Check if it's safe to place a queen at (row, col).&quot;&quot;&quot; <br/></p>
+<p>    # Check the column <br/></p>
+<p>    for i in range(row): <br/></p>
+<p>        if board[i][col] == 1: <br/></p>
+<p>            return False <br/></p>
+<p>    # Check the upper left diagonal <br/></p>
+<p>    for i, j in zip(range(row-1, -1, -1), range(col-1, -1, -1)): <br/></p>
+<p>        if board[i][j] == 1: <br/></p>
+<p>            return False <br/></p>
+<p>    # Check the upper right diagonal <br/></p>
+<p>    for i, j in zip(range(row-1, -1, -1), range(col+1, n)): <br/></p>
+<p>        if board[i][j] == 1: <br/></p>
+<p>            return False <br/></p>
+<p>    return True <br/></p>
+<p>def solve_nqueens(board, row, n): <br/></p>
+<p>    &quot;&quot;&quot;Solve the N-Queens problem using backtracking.&quot;&quot;&quot; <br/></p>
+<p>    if row == n:   <br/></p>
+<p>        print_board(board) <br/></p>
+<p>        return True <br/></p>
+<p>    res = False <br/></p>
+<p>    for col in range(n): <br/></p>
+<p>        if is_safe(board, row, col, n): <br/></p>
+<p>            board[row][col] = 1   <br/></p>
+<p>            res = solve_nqueens(board, row + 1, n) or res   <br/></p>
+<p>            board[row][col] = 0  <br/></p>
+<p>    return res <br/></p>
+<p>def nqueens(n): </p>
+
+</div></div>
+<div style="page-break-before:always; page-break-after:always"><div><p>    &quot;&quot;&quot;Function to solve the N-Queens problem for a given size N.&quot;&quot;&quot; <br/></p>
+<p>    board = [[0] * n for _ in range(n)]   <br/></p>
+<p>    if not solve_nqueens(board, 0, n):   <br/></p>
+<p>        print(&quot;Solution does not exist.&quot;) <br/></p>
+<p>    else: <br/></p>
+<p>        print(&quot;All possible solutions found.\n&quot;) <br/></p>
+<p>n = int(input(&quot;Enter the number of queens (N): &quot;)) <br/></p>
+<p>nqueens(n) <br/></p>
+<p><b>OUTPUT: <br/></b></p>
+<p>Enter the number of queens (N): 4 <br/></p>
+<p>. Q . . <br/></p>
+<p>. . . Q <br/></p>
+<p>Q . . . <br/></p>
+<p>. . Q . <br/></p>
+<p> <br/></p>
+<p>. . Q . <br/></p>
+<p>Q . . . <br/></p>
+<p>. . . Q <br/></p>
+<p>. Q . . <br/></p>
+<p>All possible solutions found. <br/></p>
+<p> </p>
+
+</div></div>
+</body></html>
